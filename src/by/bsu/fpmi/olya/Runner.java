@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class Runner {
     public static void main(String[] args) {
-        Game game = GameBuilder.build(new Dimension(640, 480));
+        Game game = GameBuilder.build(new Dimension(832, 760));
         game.setScene(new MenuScene(game));
         game.start();
     }

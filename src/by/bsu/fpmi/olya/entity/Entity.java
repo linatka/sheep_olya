@@ -2,11 +2,11 @@ package by.bsu.fpmi.olya.entity;
 
 import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.garphics.Texture;
+import by.bsu.fpmi.olya.levels.Direction;
 
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by Lenovo on 25.04.2016.

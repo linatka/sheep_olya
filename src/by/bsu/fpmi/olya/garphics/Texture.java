@@ -1,6 +1,7 @@
 package by.bsu.fpmi.olya.garphics;
 
 import by.bsu.fpmi.olya.engine.Constants;
+import by.bsu.fpmi.olya.engine.GameDimension;
 import by.bsu.fpmi.olya.managers.TextureManager;
 
 import javax.imageio.ImageIO;
@@ -49,8 +50,12 @@ public class Texture {
         g.drawImage(manager.getImage(), x * Constants.CELL_WIDTH, y * Constants.CELL_HEIGHT, null);
     }
 
-    public Dimension size(){
-        return manager.size();
+    public GameDimension size(){
+        return new GameDimension(manager.size());
+    }
+
+    public BufferedImage getImage(){
+        return manager.getImage();
     }
 
 }

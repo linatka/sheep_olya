@@ -12,13 +12,10 @@ public class GameBuilder {
 
     public static Game build(Dimension screenSize) {
 
-
-
         JFrame frame = new JFrame();
         frame.setFocusable(false);
 
-        frame.setSize(new Dimension(Constants.CELL_WIDTH * Constants.SCREEN_WIDTH,
-                Constants.CELL_HEIGHT * Constants.SCREEN_HEIGHT));
+        frame.setSize(screenSize);
 
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());

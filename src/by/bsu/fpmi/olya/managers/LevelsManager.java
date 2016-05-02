@@ -1,8 +1,6 @@
 package by.bsu.fpmi.olya.managers;
 
 import by.bsu.fpmi.olya.levels.builders.LevelBuilder;
-import by.bsu.fpmi.olya.levels.builders.SimpleLevelBuilder;
-import by.bsu.fpmi.olya.levels.structure.Level;
 
 import java.util.ArrayList;
 

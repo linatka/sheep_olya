@@ -3,11 +3,11 @@ package by.bsu.fpmi.olya.scenes;
 import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.Game;
 import by.bsu.fpmi.olya.engine.Scene;
-import by.bsu.fpmi.olya.entity.Direction;
+import by.bsu.fpmi.olya.levels.Direction;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.garphics.TextureConstants;
 import by.bsu.fpmi.olya.levels.builders.LevelBuilder;
-import by.bsu.fpmi.olya.levels.structure.Level;
+import by.bsu.fpmi.olya.levels.Level;
 import by.bsu.fpmi.olya.managers.TimeManager;
 
 import java.awt.*;
@@ -44,6 +44,28 @@ public class MainScene extends Scene {
             sheepYDirection = level.getYDirection();
             levelDelta = 0;
 
+            if (level.getProgress() == Level.Progress.PASSED_FAIL){
+                Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
+                        TextureConstants.D_MESSAGES + "\\" +
+                        TextureConstants.MS_LEVEL_PASSED_FAIL);
+                game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), false));
+
+            }
+            if (level.getProgress() == Level.Progress.PASSED_SUCCESSFUL){
+                if (game.getLevelsManager().goToNextLevel()){
+                    Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
+                            TextureConstants.D_MESSAGES + "\\" +
+                            TextureConstants.MS_LEVEL_PASSED_SUCCESS);
+                    game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), true));
+                } else {
+                    Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
+                            TextureConstants.D_MESSAGES + "\\" +
+                            TextureConstants.MS_FINISH_SCENE);
+                    game.setScene(new GameOverScene(game, texture));
+                }
+
+            }
+
         }
     }
 
@@ -57,27 +79,7 @@ public class MainScene extends Scene {
                 (Constants.SCREEN_WIDTH - 6) * Constants.CELL_WIDTH,
                 Constants.CELL_HEIGHT * 2);
 
-        if (level.getProgress() == Level.Progress.PASSED_FAIL){
-            Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
-                                                    TextureConstants.D_LANDSCAPES + "\\" +
-                                                    TextureConstants.L_LEVEL_PASSED_FAIL);
-            game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), false));
 
-        }
-        if (level.getProgress() == Level.Progress.PASSED_SUCCESSFUL){
-            if (game.getLevelsManager().goToNextLevel()){
-                Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
-                        TextureConstants.D_LANDSCAPES + "\\" +
-                        TextureConstants.L_LEVEL_PASSED_SUCCESS);
-                game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), true));
-            } else {
-                Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
-                        TextureConstants.D_LANDSCAPES + "\\" +
-                        TextureConstants.L_FINISH_SCENE);
-                game.setScene(new GameOverScene(game, texture));
-            }
-
-        }
 
     }
 

@@ -1,6 +1,7 @@
 package by.bsu.fpmi.olya.entity;
 
 import by.bsu.fpmi.olya.engine.Constants;
+import by.bsu.fpmi.olya.levels.Direction;
 
 /**
  * Created by Lenovo on 23.04.2016.

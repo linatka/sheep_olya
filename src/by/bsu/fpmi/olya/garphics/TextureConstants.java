@@ -17,16 +17,19 @@ public interface TextureConstants {
     String D_WOLF = "wolf";
     String D_SIMPLE_LEVEL_OLYA = "olya_simple";
     String D_MENU = "menu";
+    String D_MESSAGES = "messages";
+    String D_TEMP = "temp";
 
     // files
 
-    // landscapes and prizes
+    // landscapes
     String L_GRASS = "grass.png";
     String L_FLOWER_GRASS = "flower_grass.png";
     String L_SKY = "sky.png";
-    String L_LEVEL_PASSED_SUCCESS = "game_over.png";
-    String L_LEVEL_PASSED_FAIL = "game_over_fail.png";
-    String L_FINISH_SCENE = "game_over.png";
+    String L_HOME = "home.png";
+    String L_BLOCK = "block.png";
+
+    // prizes
     String P_APPLE = "apple.png";
     String P_FLOWER = "flower.png";
 
@@ -52,5 +55,10 @@ public interface TextureConstants {
     String M_EXIT_A = "active_exit_label.png";
     String M_EXIT_P = "exit_label.png";
     //String M_EXIT_NA = "na_exit_label.png";
+
+    // messages
+    String MS_LEVEL_PASSED_SUCCESS = "game_over.png";
+    String MS_LEVEL_PASSED_FAIL = "game_over_fail.png";
+    String MS_FINISH_SCENE = "game_over.png";
 
 }

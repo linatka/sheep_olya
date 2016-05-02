@@ -1,13 +1,19 @@
 package by.bsu.fpmi.olya.levels.builders;
 
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.entity.Enemy;
+import by.bsu.fpmi.olya.entity.Sheep;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.garphics.TextureConstants;
-import by.bsu.fpmi.olya.levels.Landscape;
-import by.bsu.fpmi.olya.levels.Prize;
-import by.bsu.fpmi.olya.levels.structure.Level;
+import by.bsu.fpmi.olya.levels.LevelException;
+import by.bsu.fpmi.olya.levels.structures.ComplexLandscape;
+import by.bsu.fpmi.olya.levels.structures.Landscape;
+import by.bsu.fpmi.olya.levels.structures.Prize;
+import by.bsu.fpmi.olya.levels.Level;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Lenovo on 29.04.2016.
@@ -54,6 +60,46 @@ public abstract class LevelBuilder {
             return sb.toString();
         }
         return "";
+    }
+
+    public Sheep getSimpleSheep(){
+        return new Sheep(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_OBJECTS,
+                TextureConstants.D_SIMPLE_LEVEL_OLYA),
+                Constants.DEFAULT_SHEEP_X, Constants.SCREEN_HEIGHT);
+    }
+
+    public Map<Level.Attribute, Texture> getDefaultAttributesMap(){
+        Map<Level.Attribute, Texture> attributes = new HashMap<>();
+        attributes.put(Level.Attribute.HEALTH_0, new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_ATTRIBUTES,
+                TextureConstants.A_HEALTH_0)));
+        attributes.put(Level.Attribute.HEALTH_1, new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_ATTRIBUTES,
+                TextureConstants.A_HEALTH_1)));
+        attributes.put(Level.Attribute.HEALTH_2, new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_ATTRIBUTES,
+                TextureConstants.A_HEALTH_2)));
+        attributes.put(Level.Attribute.HEALTH_3, new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_ATTRIBUTES,
+                TextureConstants.A_HEALTH_3)));
+        attributes.put(Level.Attribute.PRIZES, new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_ATTRIBUTES,
+                TextureConstants.A_APPLE)));
+        return attributes;
+    }
+
+    public ComplexLandscape getHome() throws LevelException{
+        return new ComplexLandscape(new Texture(buildPath(TextureConstants.D_RESOURCES,
+                TextureConstants.D_LANDSCAPES,
+                TextureConstants.L_HOME)), false, "home");
+    }
+
+    public Landscape getBlock(){
+        return new Landscape(1, Constants.SCREEN_HEIGHT,
+                new Texture(buildPath(TextureConstants.D_RESOURCES,
+                        TextureConstants.D_LANDSCAPES,
+                        TextureConstants.L_BLOCK)), true);
     }
 
 }

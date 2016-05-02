@@ -1,16 +1,13 @@
 package by.bsu.fpmi.olya.levels.builders;
 
 import by.bsu.fpmi.olya.engine.Constants;
-import by.bsu.fpmi.olya.entity.Enemy;
 import by.bsu.fpmi.olya.entity.Sheep;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.garphics.TextureConstants;
-import by.bsu.fpmi.olya.levels.Landscape;
-import by.bsu.fpmi.olya.levels.Prize;
-import by.bsu.fpmi.olya.levels.structure.Level;
-import by.bsu.fpmi.olya.levels.structure.LevelInitializer;
+import by.bsu.fpmi.olya.levels.structures.Landscape;
+import by.bsu.fpmi.olya.levels.Level;
+import by.bsu.fpmi.olya.levels.LevelInitializer;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,28 +21,10 @@ public class SimpleLevelBuilder extends LevelBuilder{
 
         final int FLOOR = 3;
 
-        Sheep sheep = new Sheep(buildPath(TextureConstants.D_RESOURCES,
-                                            TextureConstants.D_OBJECTS,
-                                            TextureConstants.D_SIMPLE_LEVEL_OLYA),
-                Constants.DEFAULT_SHEEP_X, Constants.SCREEN_HEIGHT - FLOOR);
-        sheep.setY(sheep.getY() - sheep.HEIGHT);
+        Sheep sheep = getSimpleSheep();
+        sheep.setY(sheep.getY() - sheep.HEIGHT - FLOOR);
 
-        Map<Level.Attribute, Texture> attributes = new HashMap<>();
-        attributes.put(Level.Attribute.HEALTH_0, new Texture(buildPath(TextureConstants.D_RESOURCES,
-                                                                        TextureConstants.D_ATTRIBUTES,
-                                                                        TextureConstants.A_HEALTH_0)));
-        attributes.put(Level.Attribute.HEALTH_1, new Texture(buildPath(TextureConstants.D_RESOURCES,
-                                                                        TextureConstants.D_ATTRIBUTES,
-                                                                        TextureConstants.A_HEALTH_1)));
-        attributes.put(Level.Attribute.HEALTH_2, new Texture(buildPath(TextureConstants.D_RESOURCES,
-                                                                        TextureConstants.D_ATTRIBUTES,
-                                                                        TextureConstants.A_HEALTH_2)));
-        attributes.put(Level.Attribute.HEALTH_3, new Texture(buildPath(TextureConstants.D_RESOURCES,
-                                                                        TextureConstants.D_ATTRIBUTES,
-                                                                        TextureConstants.A_HEALTH_3)));
-        attributes.put(Level.Attribute.PRIZES, new Texture(buildPath(TextureConstants.D_RESOURCES,
-                                                                        TextureConstants.D_ATTRIBUTES,
-                                                                        TextureConstants.A_APPLE)));
+        Map<Level.Attribute, Texture> attributes = getDefaultAttributesMap();
 
         LevelInitializer initializer = new LevelInitializer(Constants.SCREEN_WIDTH * 10,
                 new Texture(buildPath(TextureConstants.D_RESOURCES,

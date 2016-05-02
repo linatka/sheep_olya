@@ -1,6 +1,6 @@
 package by.bsu.fpmi.olya.scenes;
 
-import by.bsu.fpmi.olya.entity.Direction;
+import by.bsu.fpmi.olya.engine.GameDimension;
 import by.bsu.fpmi.olya.garphics.Texture;
 
 import java.awt.*;
@@ -52,7 +52,10 @@ public class MenuButton {
         }
     }
 
-    public Dimension size(){
+    public GameDimension size(){
+        if (state == State.PASSIVE){
+            return passiveTexture.size();
+        }
         return activeTexture.size(); // replace for current state size
     }
 }

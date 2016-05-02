@@ -2,6 +2,7 @@ package by.bsu.fpmi.olya.scenes;
 
 import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.Game;
+import by.bsu.fpmi.olya.engine.GameDimension;
 import by.bsu.fpmi.olya.engine.Scene;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.garphics.TextureConstants;
@@ -103,15 +104,13 @@ public class MenuScene extends Scene {
     @Override
     public void draw(Graphics2D g) {
         backGround.draw(g, 0, 0);
-        newGameLabel.draw(g, (backGround.size().width - newGameLabel.size().width) / (2 * Constants.CELL_WIDTH),
-                backGround.size().height * 2 / (5 * Constants.CELL_HEIGHT));
-        continueLabel.draw(g, (backGround.size().width - continueLabel.size().width) / (2 * Constants.CELL_WIDTH),
-                backGround.size().height * 2 / (5 * Constants.CELL_HEIGHT) +
-                        newGameLabel.size().height / Constants.CELL_HEIGHT + 2);
-        exitLabel.draw(g, (backGround.size().width - exitLabel.size().width) / (2 * Constants.CELL_WIDTH),
-                backGround.size().height * 2 / (5 * Constants.CELL_HEIGHT) +
-                        newGameLabel.size().height / Constants.CELL_HEIGHT + 2 +
-                        continueLabel.size().height / Constants.CELL_HEIGHT + 2);
+        int x = (backGround.size().getWidthInCell() - continueLabel.size().getWidthInCell()) / 2;
+        int y = backGround.size().getHeightInCell() * 2 / 5;
+        newGameLabel.draw(g, x, y);
+        y += newGameLabel.size().getHeightInCell() + 2;
+        continueLabel.draw(g, x, y);
+        y += newGameLabel.size().getHeightInCell() + 2;
+        exitLabel.draw(g, x, y);
 
     }
 
