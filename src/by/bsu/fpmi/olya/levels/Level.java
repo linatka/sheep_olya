@@ -1,7 +1,6 @@
 package by.bsu.fpmi.olya.levels;
 
-import by.bsu.fpmi.olya.engine.Constants;
-import by.bsu.fpmi.olya.engine.GameDimension;
+import by.bsu.fpmi.olya.constants.GameConstants;
 import by.bsu.fpmi.olya.entity.Enemy;
 import by.bsu.fpmi.olya.entity.Entity;
 import by.bsu.fpmi.olya.entity.Sheep;
@@ -52,7 +51,7 @@ public class Level {
     public Level(LevelInitializer initializer){
 
         LENGTH = initializer.getLength();
-        levelMatrix = new Cell[LENGTH][Constants.SCREEN_HEIGHT];
+        levelMatrix = new Cell[LENGTH][GameConstants.SCREEN_HEIGHT];
         prizes = new HashMap<>();
         enemies = new ArrayList<>();
 
@@ -62,7 +61,7 @@ public class Level {
 
         sheep = initializer.getSheep();
         background = initializer.getBackground();
-        enemyDelay = Constants.ENEMY_DELAY;
+        enemyDelay = GameConstants.ENEMY_DELAY;
         progress = Progress.IN_PROGRESS;
         target = initializer.getTarget();
 
@@ -83,7 +82,7 @@ public class Level {
     }
 
 //    private void setAt(int x, int y, LevelStructure structure){
-//        if (0 <= x && x < LENGTH && 0 <= y && y < Constants.SCREEN_HEIGHT){
+//        if (0 <= x && x < LENGTH && 0 <= y && y < GameConstants.SCREEN_HEIGHT){
 //            if (structure instanceof Prize){
 //                prizes.put(new Point((int)x, (int)y), (Prize)structure);
 //                levelMatrix[x][y] =
@@ -130,7 +129,7 @@ public class Level {
                     enemy.move();
                 }
             });
-            enemyDelay = Constants.ENEMY_DELAY;
+            enemyDelay = GameConstants.ENEMY_DELAY;
         } else {
             enemyDelay--;
         }
@@ -165,12 +164,12 @@ public class Level {
         }
 
         if (currentLevelPosition + levelDelta >= 0 &&
-                currentLevelPosition + levelDelta + Constants.SCREEN_WIDTH < LENGTH) {
+                currentLevelPosition + levelDelta + GameConstants.SCREEN_WIDTH < LENGTH) {
             currentLevelPosition += levelDelta;
         }
 
         if (sheep.getPrize() == target){
-            for (int i = 0; i < Constants.SCREEN_HEIGHT; i++) {
+            for (int i = 0; i < GameConstants.SCREEN_HEIGHT; i++) {
                 levelMatrix[blockPosition][i] = null;
             }
         }
@@ -188,7 +187,7 @@ public class Level {
 //                    enemy.move();
 //                }
 //            });
-//            enemyDelay = Constants.ENEMY_DELAY;
+//            enemyDelay = GameConstants.ENEMY_DELAY;
 //        } else {
 //            enemyDelay--;
 //        }
@@ -224,12 +223,12 @@ public class Level {
 //        }
 //
 //        if (currentLevelPosition + levelDelta >= 0 &&
-//                currentLevelPosition + levelDelta + Constants.SCREEN_WIDTH < LENGTH) {
+//                currentLevelPosition + levelDelta + GameConstants.SCREEN_WIDTH < LENGTH) {
 //            currentLevelPosition += levelDelta;
 //        }
 
-        for (int i = 0; i < Constants.SCREEN_WIDTH; i++){
-            for (int j = 0; j < Constants.SCREEN_HEIGHT; j++){
+        for (int i = 0; i < GameConstants.SCREEN_WIDTH; i++){
+            for (int j = 0; j < GameConstants.SCREEN_HEIGHT; j++){
                 if (levelMatrix[i + currentLevelPosition][j] != null){
                     levelMatrix[i + currentLevelPosition][j].getTexture().draw(g, i, j);
                 }
@@ -253,7 +252,7 @@ public class Level {
     }
 
     private boolean drawEnemy(Graphics2D g, Enemy enemy, int currentLevelPosition){
-        if (currentLevelPosition < enemy.getX() && currentLevelPosition + Constants.SCREEN_WIDTH > enemy.getX()){
+        if (currentLevelPosition < enemy.getX() && currentLevelPosition + GameConstants.SCREEN_WIDTH > enemy.getX()){
             enemy.draw(g, enemy.getX() - currentLevelPosition, enemy.getY());
             return true;
         }
@@ -282,12 +281,12 @@ public class Level {
 
         Texture prizesTexture = attributes.get(Attribute.PRIZES);
         prizesTexture.draw(g, 0,
-                Constants.SCREEN_HEIGHT - prizesTexture.size().getHeightInCell() - 2);
+                GameConstants.SCREEN_HEIGHT - prizesTexture.size().getHeightInCell() - 2);
         g.setFont(new Font("Georgia", Font.BOLD, 24));
         g.setColor(Color.WHITE);
         String status = sheep.getPrize() + " / " + target;
         g.drawString(status, (prizesTexture.size().width - status.length() * 11) / 2,
-                Constants.SCREEN_HEIGHT * Constants.CELL_HEIGHT - (prizesTexture.size().height)/2);
+                GameConstants.SCREEN_HEIGHT * GameConstants.CELL_HEIGHT - (prizesTexture.size().height)/2);
         //g.dispose();
     }
 

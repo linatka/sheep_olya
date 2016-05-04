@@ -1,6 +1,6 @@
 package by.bsu.fpmi.olya.entity;
 
-import by.bsu.fpmi.olya.engine.Constants;
+import by.bsu.fpmi.olya.constants.GameConstants;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.levels.Direction;
 
@@ -36,8 +36,8 @@ public abstract class Entity {
         textures.put(Direction.RIGHT, new Texture(path + "\\" + "right.png"));
         this.x = x;
         this.y = y;
-        WIDTH = textures.get(Direction.LEFT).size().width / Constants.CELL_WIDTH;
-        HEIGHT = textures.get(Direction.LEFT).size().height / Constants.CELL_HEIGHT;
+        WIDTH = textures.get(Direction.LEFT).size().width / GameConstants.CELL_WIDTH;
+        HEIGHT = textures.get(Direction.LEFT).size().height / GameConstants.CELL_HEIGHT;
         xDirection = Direction.RIGHT;
         yDirection = Direction.REST;
         this.controlMode = controlMode;
@@ -58,12 +58,12 @@ public abstract class Entity {
 
     public int incY(int inc){
         y += inc;
-        if (y > Constants.SCREEN_HEIGHT - HEIGHT){
-            y = Constants.SCREEN_HEIGHT - HEIGHT;
+        if (y > GameConstants.SCREEN_HEIGHT - HEIGHT){
+            y = GameConstants.SCREEN_HEIGHT - HEIGHT;
             yDirection = Direction.REST;
         }
-        if (y < Constants.SCREEN_HEIGHT - Constants.MAX_JUMPING_HEIGHT){
-            y = Constants.SCREEN_HEIGHT - Constants.MAX_JUMPING_HEIGHT;
+        if (y < GameConstants.SCREEN_HEIGHT - GameConstants.MAX_JUMPING_HEIGHT){
+            y = GameConstants.SCREEN_HEIGHT - GameConstants.MAX_JUMPING_HEIGHT;
             yDirection = Direction.DOWN;
         }
         return y;
@@ -79,6 +79,14 @@ public abstract class Entity {
 
     public Direction getXDirection() {
         return xDirection;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public void setXDirection(Direction xDirection) {
@@ -104,13 +112,5 @@ public abstract class Entity {
     public boolean isIntersection(int x, int y, int width, int height){
         return  !((x + width < this.x || x > this.x + this.WIDTH)
                 || (y + height < this.y || y > this.y + this.HEIGHT));
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 }

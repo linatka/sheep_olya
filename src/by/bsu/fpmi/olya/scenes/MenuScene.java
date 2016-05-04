@@ -1,13 +1,12 @@
 package by.bsu.fpmi.olya.scenes;
 
-import by.bsu.fpmi.olya.engine.Constants;
+import by.bsu.fpmi.olya.constants.PathBuilder;
+import by.bsu.fpmi.olya.constants.SoundConstants;
 import by.bsu.fpmi.olya.engine.Game;
-import by.bsu.fpmi.olya.engine.GameDimension;
 import by.bsu.fpmi.olya.engine.Scene;
 import by.bsu.fpmi.olya.garphics.Texture;
-import by.bsu.fpmi.olya.garphics.TextureConstants;
-import by.bsu.fpmi.olya.levels.builders.LevelBuilder;
-import by.bsu.fpmi.olya.levels.builders.SimpleLevelBuilder;
+import by.bsu.fpmi.olya.constants.TextureConstants;
+import by.bsu.fpmi.olya.managers.SoundManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -57,10 +56,12 @@ public class MenuScene extends Scene {
 
     private Button selectedButton;
 
+    private SoundManager soundManager;
+
     public MenuScene(Game game) {
         super(game);
 
-        String directoryPath = TextureConstants.D_RESOURCES + "\\" + TextureConstants.D_MENU + "\\";
+        String directoryPath = TextureConstants.D_RESOURCES_TEXTURES + "\\" + TextureConstants.D_MENU + "\\";
         this.backGround = new Texture(directoryPath + TextureConstants.M_MENU_BK_GROUND);
 
         newGameLabel = new MenuButton(new Texture(directoryPath + TextureConstants.M_NEW_GAME_A),
@@ -78,6 +79,13 @@ public class MenuScene extends Scene {
 
         selectedButton = Button.NEW_GAME;
         applySelection();
+
+        //String soundName = "resources\\sounds\\sound_menu.wav";
+        soundManager = new SoundManager();
+        soundManager.setActionSound(SoundConstants.S_A_WAITING, PathBuilder.buildPath(SoundConstants.D_RESOURCES,
+                                SoundConstants.D_SOUNDS, SoundConstants.S_MENU));
+        soundManager.playActionSound(SoundConstants.S_A_WAITING);
+
     }
 
     @Override
@@ -148,6 +156,7 @@ public class MenuScene extends Scene {
                 game.stop();
                 break;
         }
+        soundManager.stopAll();
     }
 
 }
