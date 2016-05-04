@@ -1,5 +1,7 @@
 package by.bsu.fpmi.olya.engine;
 
+import by.bsu.fpmi.olya.constants.GameConstants;
+
 import java.awt.*;
 
 /**
@@ -23,8 +25,8 @@ public class GameDimension extends Dimension{
                 this.height = height;
                 break;
             case CELL:
-                this.width = width * Constants.CELL_WIDTH;
-                this.height = height * Constants.CELL_HEIGHT;
+                this.width = width * GameConstants.CELL_WIDTH;
+                this.height = height * GameConstants.CELL_HEIGHT;
                 break;
         }
     }
@@ -34,11 +36,11 @@ public class GameDimension extends Dimension{
     }
 
     public int getWidthInCell(){
-        return width / Constants.CELL_WIDTH;
+        return width / GameConstants.CELL_WIDTH;
     }
 
     public int getHeightInCell(){
-        return height / Constants.CELL_HEIGHT;
+        return height / GameConstants.CELL_HEIGHT;
     }
 
     public void setWidth(int width, Unit unit){
@@ -47,7 +49,7 @@ public class GameDimension extends Dimension{
                 this.width = width;
                 break;
             case CELL:
-                this.width = width * Constants.CELL_WIDTH;
+                this.width = width * GameConstants.CELL_WIDTH;
                 break;
         }
     }
@@ -58,7 +60,7 @@ public class GameDimension extends Dimension{
                 this.height = height;
                 break;
             case CELL:
-                this.height = height * Constants.CELL_WIDTH;
+                this.height = height * GameConstants.CELL_WIDTH;
                 break;
         }
     }
