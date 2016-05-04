@@ -1,6 +1,6 @@
 package by.bsu.fpmi.olya.entity;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.levels.Direction;
 
 /**
@@ -14,7 +14,7 @@ public class Sheep extends Entity{
 
     public Sheep(String path, int x, int y) {
         super(path, x, y, MotionControlMode.CONTROLLED);
-        this.health = GameConstants.DEFAULT_HEALTH;
+        this.health = Constants.DEFAULT_HEALTH;
     }
 
     public int getHealth() {

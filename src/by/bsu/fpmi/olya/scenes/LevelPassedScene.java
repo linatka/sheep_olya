@@ -1,8 +1,10 @@
 package by.bsu.fpmi.olya.scenes;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.Game;
+import by.bsu.fpmi.olya.engine.Scene;
 import by.bsu.fpmi.olya.garphics.Texture;
+import by.bsu.fpmi.olya.levels.builders.SimpleLevelBuilder;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -42,7 +44,7 @@ public class LevelPassedScene extends GameOverScene {
         g.setFont(new Font("Georgia", Font.BOLD, 46));
         g.setColor(Color.WHITE);
         String status = score + " / " + target;
-        g.drawString(status, (GameConstants.SCREEN_WIDTH * GameConstants.CELL_WIDTH - status.length() * 20) / 2,
-                GameConstants.SCREEN_HEIGHT * GameConstants.CELL_HEIGHT * 3 / 5);
+        g.drawString(status, (Constants.SCREEN_WIDTH * Constants.CELL_WIDTH - status.length() * 20) / 2,
+                Constants.SCREEN_HEIGHT * Constants.CELL_HEIGHT * 3 / 5);
     }
 }

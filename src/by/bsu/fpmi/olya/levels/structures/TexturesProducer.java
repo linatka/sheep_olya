@@ -1,8 +1,9 @@
 package by.bsu.fpmi.olya.levels.structures;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.garphics.Texture;
-import by.bsu.fpmi.olya.constants.TextureConstants;
+import by.bsu.fpmi.olya.garphics.TextureConstants;
+import by.bsu.fpmi.olya.levels.Level;
 import by.bsu.fpmi.olya.levels.LevelException;
 
 import javax.imageio.ImageIO;
@@ -34,11 +35,11 @@ public class TexturesProducer {
 
         for (int i = 0; i < hPiecesCount; i++) {
             for (int j = 0; j < vPiecesCount; j++) {
-                int[] pixels = new int[GameConstants.CELL_WIDTH * GameConstants.CELL_HEIGHT * 3];
+                int[] pixels = new int[Constants.CELL_WIDTH * Constants.CELL_HEIGHT * 3];
                 PixelGrabber pg = new PixelGrabber(sourceTexture.getImage(),
-                        i * GameConstants.CELL_WIDTH, j * GameConstants.CELL_HEIGHT,
-                        GameConstants.CELL_WIDTH, GameConstants.CELL_HEIGHT, pixels,
-                        0, GameConstants.CELL_WIDTH * 3);
+                        i * Constants.CELL_WIDTH, j * Constants.CELL_HEIGHT,
+                        Constants.CELL_WIDTH, Constants.CELL_HEIGHT, pixels,
+                        0, Constants.CELL_WIDTH * 3);
                 try {
                     pg.grabPixels();
                 } catch (InterruptedException e) {
@@ -48,16 +49,17 @@ public class TexturesProducer {
                     throw new LevelException("Cell producing error: PixelGrabber can't parse image.");
                 }
 
-                String path = TextureConstants.D_RESOURCES_TEXTURES + "\\" +
+                String path = TextureConstants.D_RESOURCES + "\\" +
                         TextureConstants.D_TEMP + "\\" + filesName + i + j +".png";
                 try {
                     File file = new File(path);
-                    if (!file.exists()){
-                    ImageIO.write(getImageFromArray(pixels, GameConstants.CELL_WIDTH, GameConstants.CELL_HEIGHT), "png",
-                            file);
-                        System.out.println("Create new file home__");
-                    }
-
+//                    if (!file.exists()){
+//                        if (!file.createNewFile()){
+//                            throw new LevelException("Cell producing error: can't create temp textures files");
+//                        };
+//                    }
+                    ImageIO.write(getImageFromArray(pixels, Constants.CELL_WIDTH, Constants.CELL_HEIGHT), "png",
+                           file);
                 } catch (IOException e){
                     throw new LevelException("Cell producing error: can't write to temp texture file.");
                 }

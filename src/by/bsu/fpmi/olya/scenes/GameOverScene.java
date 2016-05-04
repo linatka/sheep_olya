@@ -1,5 +1,6 @@
 package by.bsu.fpmi.olya.scenes;
 
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.Game;
 import by.bsu.fpmi.olya.engine.Scene;
 import by.bsu.fpmi.olya.garphics.Texture;

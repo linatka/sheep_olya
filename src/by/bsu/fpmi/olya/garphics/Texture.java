@@ -1,6 +1,6 @@
 package by.bsu.fpmi.olya.garphics;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.GameDimension;
 import by.bsu.fpmi.olya.managers.TextureManager;
 
@@ -47,7 +47,7 @@ public class Texture {
     }
 
     public void draw(Graphics g, int x, int y){
-        g.drawImage(manager.getImage(), x * GameConstants.CELL_WIDTH, y * GameConstants.CELL_HEIGHT, null);
+        g.drawImage(manager.getImage(), x * Constants.CELL_WIDTH, y * Constants.CELL_HEIGHT, null);
     }
 
     public GameDimension size(){

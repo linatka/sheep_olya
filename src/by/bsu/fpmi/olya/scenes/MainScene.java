@@ -1,11 +1,11 @@
 package by.bsu.fpmi.olya.scenes;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.engine.Game;
 import by.bsu.fpmi.olya.engine.Scene;
 import by.bsu.fpmi.olya.levels.Direction;
 import by.bsu.fpmi.olya.garphics.Texture;
-import by.bsu.fpmi.olya.constants.TextureConstants;
+import by.bsu.fpmi.olya.garphics.TextureConstants;
 import by.bsu.fpmi.olya.levels.builders.LevelBuilder;
 import by.bsu.fpmi.olya.levels.Level;
 import by.bsu.fpmi.olya.managers.TimeManager;
@@ -32,7 +32,7 @@ public class MainScene extends Scene {
         sheepXDirection = Direction.RIGHT;
         sheepYDirection = Direction.REST;
         level = levelBuilder.build();
-        timeManager = new TimeManager(GameConstants.DELAY);
+        timeManager = new TimeManager(Constants.DELAY);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MainScene extends Scene {
             levelDelta = 0;
 
             if (level.getProgress() == Level.Progress.PASSED_FAIL){
-                Texture texture = new Texture(TextureConstants.D_RESOURCES_TEXTURES + "\\" +
+                Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
                         TextureConstants.D_MESSAGES + "\\" +
                         TextureConstants.MS_LEVEL_PASSED_FAIL);
                 game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), false));
@@ -53,12 +53,12 @@ public class MainScene extends Scene {
             }
             if (level.getProgress() == Level.Progress.PASSED_SUCCESSFUL){
                 if (game.getLevelsManager().goToNextLevel()){
-                    Texture texture = new Texture(TextureConstants.D_RESOURCES_TEXTURES + "\\" +
+                    Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
                             TextureConstants.D_MESSAGES + "\\" +
                             TextureConstants.MS_LEVEL_PASSED_SUCCESS);
                     game.setScene(new LevelPassedScene(game, texture, level.getTarget(), level.getScore(), true));
                 } else {
-                    Texture texture = new Texture(TextureConstants.D_RESOURCES_TEXTURES + "\\" +
+                    Texture texture = new Texture(TextureConstants.D_RESOURCES + "\\" +
                             TextureConstants.D_MESSAGES + "\\" +
                             TextureConstants.MS_FINISH_SCENE);
                     game.setScene(new GameOverScene(game, texture));
@@ -76,8 +76,8 @@ public class MainScene extends Scene {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Georgia", Font.PLAIN, 24));
         g.drawString("Level " + (game.getLevelsManager().getCurrentLevel() + 1),
-                (GameConstants.SCREEN_WIDTH - 6) * GameConstants.CELL_WIDTH,
-                GameConstants.CELL_HEIGHT * 2);
+                (Constants.SCREEN_WIDTH - 6) * Constants.CELL_WIDTH,
+                Constants.CELL_HEIGHT * 2);
 
 
 

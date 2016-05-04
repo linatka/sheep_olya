@@ -1,12 +1,11 @@
 package by.bsu.fpmi.olya.levels;
 
-import by.bsu.fpmi.olya.constants.GameConstants;
+import by.bsu.fpmi.olya.engine.Constants;
 import by.bsu.fpmi.olya.entity.Enemy;
 import by.bsu.fpmi.olya.entity.Sheep;
 import by.bsu.fpmi.olya.garphics.Texture;
 import by.bsu.fpmi.olya.levels.structures.ComplexLandscape;
 import by.bsu.fpmi.olya.levels.structures.Prize;
-import by.bsu.fpmi.olya.managers.SoundManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -20,13 +19,10 @@ public class LevelInitializer {
 
     private int length;
     private Texture background;
-
     private Map<Point, LevelStructure> structures;
     private Map<Level.Attribute, Texture> attributes;
-
     private ArrayList<Enemy> enemies;
     private Sheep sheep;
-
     private int target;
     private int finishPosition;
     private int blockPosition;
@@ -39,7 +35,7 @@ public class LevelInitializer {
         enemies = new ArrayList<>();
         target = 0;
         this.attributes = attributes;
-        finishPosition = length - GameConstants.SCREEN_WIDTH + sheep.getX() - sheep.WIDTH;
+        finishPosition = length - Constants.SCREEN_WIDTH + sheep.getX() - sheep.WIDTH;
         blockPosition = finishPosition - sheep.WIDTH;
     }
 
@@ -61,7 +57,7 @@ public class LevelInitializer {
 
     public boolean addStructure(LevelStructure structure, int x, int y){
         if (structure.getWidth() > length - x|| structure.getWidth() > length ||
-                structure.getHeight() > GameConstants.SCREEN_HEIGHT - y|| structure.getHeight() > GameConstants.SCREEN_HEIGHT){
+                structure.getHeight() > Constants.SCREEN_HEIGHT - y|| structure.getHeight() > Constants.SCREEN_HEIGHT){
             return false;
         }
         if (structure instanceof Prize){
